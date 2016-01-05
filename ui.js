@@ -64,7 +64,6 @@ options:
 	node - the node that represents the control on a flow
 	control - the control to be added
 	tab - tab config node that this control belongs to
-	group - group name
 	[emitOnlyNewValues] - boolean (default true). 
 		If true, it checks if the payload changed before sending it
 		to the front-end. If the payload is the same no message is sent.
@@ -90,7 +89,7 @@ function add(opt) {
 	opt.convert = opt.convert || noConvert;
 	opt.convertBack = opt.convertBack || noConvert;
 	opt.control.id = opt.node.id;
-	var remove = addControl(opt.tab, opt.group, opt.control);
+	var remove = addControl(opt.tab, opt.control);
 	
 	opt.node.on("input", function(msg) {
 		if (typeof msg.enabled === 'boolean') {
@@ -163,7 +162,6 @@ function init(server, app, log, redSettings) {
 	var uiSettings = redSettings.ui || {};
 	settings.path = uiSettings.path || 'ui';
 	settings.title = uiSettings.title || 'Node-RED UI';
-	settings.defaultGroupHeader = uiSettings.defaultGroup || 'Default';
 	
 	var fullPath = join(redSettings.httpNodeRoot, settings.path);
 	var socketIoPath = join(fullPath, 'socket.io');
@@ -243,9 +241,8 @@ function itemSorter(item1, item2) {
 	return item1.order - item2.order;
 }
 
-function addControl(tab, groupHeader, control) {
+function addControl(tab, control) {
 	if (typeof control.type !== 'string') return;
-	groupHeader = groupHeader || settings.defaultGroupHeader;
 	control.order = parseInt(control.order);
 	
 	var foundTab = find(tabs, function (t) {return t.id === tab.id });
@@ -261,43 +258,25 @@ function addControl(tab, groupHeader, control) {
 		tabs.sort(itemSorter);
 	}
 	
-	var foundGroup = find(foundTab.items, function (g) {return g.header === groupHeader;});
-	if (!foundGroup) {
-		foundGroup = {
-			header: groupHeader,
-			items: []
-		};
-		foundTab.items.push(foundGroup);
-	}
-	foundGroup.items.push(control);
-	foundGroup.items.sort(itemSorter);
-	
-	foundGroup.order = foundGroup.items.reduce(function (prev, c) { return prev + c.order; }, 0) / foundGroup.items.length;
+	foundTab.items.push(control);
 	foundTab.items.sort(itemSorter);
 	
 	updateUi();
 	
 	return function() {
-		var index = foundGroup.items.indexOf(control);
-		if (index >= 0) {
-			foundGroup.items.splice(index, 1);
-			
-			if (foundGroup.items.length === 0) {
-				index = foundTab.items.indexOf(foundGroup);
-				if (index >= 0) {
-					foundTab.items.splice(index, 1);
-					
-					if (foundTab.items.length === 0) {
-						index = tabs.indexOf(foundTab);
-						if (index >= 0) {
-							tabs.splice(index, 1);
-						}
-					}
-				}
-			}
-			
-			updateUi();
-		}
+        var index = foundTab.items.indexOf(control);
+        if (index >= 0) {
+            foundTab.items.splice(index, 1);
+            
+            if (foundTab.items.length === 0) {
+                index = tabs.indexOf(foundTab);
+                if (index >= 0) {
+                    tabs.splice(index, 1);
+                }
+            }
+            
+            updateUi();
+        }
 	}
 }
 

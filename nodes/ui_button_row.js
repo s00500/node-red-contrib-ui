@@ -13,7 +13,6 @@ module.exports = function(RED) {
             emitOnlyNewValues: false,
             node: node, 
             tab: tab, 
-            group: config.group, 
             control: {
                 type: 'button-row',
                 order: config.order,

@@ -11,7 +11,6 @@ module.exports = function(RED) {
         var done = ui.add({
             node: node,
             tab: tab,
-            group: config.group,
             control: {
                 type: 'radio-button',
                 order: config.order,
