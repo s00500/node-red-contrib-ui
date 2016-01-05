@@ -189,7 +189,7 @@ function init(server, app, log, redSettings) {
                 'angular-material-icons', 'svg-morpheus', 'font-awesome',
 				'sprintf-js',
 				
-				'angular-masonry', 'masonry-layout', 'jquery', 'jquery-bridget', 'imagesloaded',
+				'jquery',
 				
 				'raphael', 'justgage',
 				
