@@ -16,6 +16,7 @@ angular.module('ui').directive('uiCompile', ['$compile', '$rootScope', 'UiEvents
                 function(value) {
                     if (innerScope) innerScope.$destroy();
                     innerScope = createInnerScope(id);
+                    innerScope.$watch('size', function(v){scope.size=v;});
                     window.scope = innerScope;
                     element.html(value);
                     delete window.scope;
