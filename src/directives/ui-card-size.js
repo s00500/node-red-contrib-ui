@@ -1,6 +1,6 @@
 /* global angular */
-angular.module('ui').directive('uiCardSize', ['$interpolate', 
-    function ($interpolate) {
+angular.module('ui').directive('uiCardSize',  
+    function () {
         var extract = /(\d+)x(\d+)/;
         return {
 			restrict: 'A',
@@ -15,4 +15,4 @@ angular.module('ui').directive('uiCardSize', ['$interpolate',
                 });
 			}
 		}
-    }]);
+    });
