@@ -2,9 +2,9 @@ var app = angular.module('ui', ['ngMaterial', 'ngMdIcons', 'ngSanitize', 'nvd3Ch
 
 app.config(['$mdThemingProvider', '$compileProvider', 
     function($mdThemingProvider, $compileProvider) {
-        $mdThemingProvider.theme('default')
+        /*$mdThemingProvider.theme('default')
             .primaryPalette('light-green')
-            .accentPalette('red');
+            .accentPalette('red');*/
             
         //white-list all protocolos
         $compileProvider.aHrefSanitizationWhitelist(/.*/);

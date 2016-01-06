@@ -21,43 +21,9 @@
         </md-list>
     </md-sidenav>
 
-    <md-content layout="row" flex layout-align="center start">
-         <!--<md-card class="masonry-brick group-card" ng-repeat="group in main.selectedTab.items"
-                    style="margin: 16px 0 0 0">
-            <md-card-content layout="column">
-                <h2 ng-show="group.header" class="md-title">{{group.header}}</h2>
-                <ui-component ng-repeat="control in group.items" flex item="control"></ui-component>
-            </md-card-content>
-        </md-card>-->
-        <div class="container" ui-group="{minColumns: 3}">
-            <div></div>
-            <div data-ss-colspan='2'></div>
-            <div></div>
-            <div></div><div data-ss-colspan='2'></div>
-            <div></div><div data-ss-colspan='2'></div>
-            <div></div><div data-ss-colspan='2'></div>
-            <div></div>
-        </div>
-        <style>
-            .container {
-                width: 320px;
-                border: 1px dashed #ccc;
-                position: relative;
-            }
-
-            .container > div {
-                background: #CCC;
-                height: 40px;
-                position: absolute;
-                width: 40px;
-            }
-
-            .container > div[data-ss-colspan='2'] { width: 90px; }
-
-            .container .ss-placeholder-child {
-                background: transparent;
-                border: 1px dashed red;
-            }
-        </style>
-    </md-content>
+    <div flex layout="row" layout-wrap layout-align="center start">
+        <ui-group ng-repeat="group in main.selectedTab.items">
+            <ui-component ng-repeat="control in group.items" item="control"></ui-component>
+        </ui-group>
+    </div>
 </md-content>
