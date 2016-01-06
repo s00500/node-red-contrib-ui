@@ -11,7 +11,7 @@ angular.module('ui').directive('uiGroup', ['$timeout', '$interpolate', 'uiSizes'
             paddingX: sizes.px,
             paddingY: sizes.py,
             minHeight: sizes.sy+2*sizes.gy,
-            //handle: '.drag-handle',
+            handle: '.drag-handle',
             enableResize: false,
             enableCrossDrop: false,
             align: 'left'

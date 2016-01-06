@@ -8,8 +8,13 @@
             topic: {value: ''},
             group: {value: ''},
             order: {value: 1, validate: RED.validators.number()},
+            style: {value: ''},
             onvalue: {value: 'true', required: true},
+            onicon: {value: 'check', required: true},
+            oncolor: {value: 'green', required: true},
             offvalue: {value: 'false', required: true},
+            officon: {value: 'close', required: true},
+            offcolor: {value: 'red', required: true},
         },
         inputs:1,
         outputs:1,
@@ -39,12 +44,27 @@
         <input type="text" style="width: 50px" id="node-input-order">
     </div>
     <div class="form-row">
+        <label for="node-input-style"><i class="fa fa-tasks"></i> Type</label>
+        <select id="node-input-style">
+            <option value="">Wide (6x1)</option>
+            <option value="icon-small">Small icon (1x1)</option>
+        </select>
+    </div>
+    <div class="form-row">
         <label for="node-input-onvalue"><i class="fa fa-toggle-on"></i> On Value</label>
-        <input type="text" id="node-input-onvalue">
+        <input type="text" id="node-input-onvalue" style="width:calc(70% - 285px);">
+        <label for="node-input-oncolor" style="width:40px;text-align:right;">Color</label>
+        <input type="text" id="node-input-oncolor" style="width:65px">
+        <label for="node-input-onicon" style="width:35px;text-align:right;">Icon</label>
+        <input type="text" id="node-input-onicon" style="width:100px">
     </div>
     <div class="form-row">
         <label for="node-input-offvalue"><i class="fa fa-toggle-off"></i> Off Value</label>
-        <input type="text" id="node-input-offvalue">
+        <input type="text" id="node-input-offvalue" style="width:calc(70% - 285px);">
+        <label for="node-input-oncolor" style="width:40px;text-align:right;">Color</label>
+        <input type="text" id="node-input-offcolor" style="width:65px">
+        <label for="node-input-onicon" style="width:35px;text-align:right;">Icon</label>
+        <input type="text" id="node-input-officon" style="width:100px">
     </div>
 </script>
 

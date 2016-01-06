@@ -1,9 +1,0 @@
-<md-button ng-repeat="button in me.item.buttons"
-           class="md-raised"  
-           style="min-width:0"
-           ui:card-size="1x1" 
-           ng-click="me.rowButtonClick(button)"
-           ng-style="{color: me.item.toggle && me.item.value[button.payload] ?  button.on_color : button.color}" 
-           aria-label="unknown">
-    <ui-icon icon="{{me.item.toggle && me.item.value[button.payload] ? button.on_icon : button.icon}}"></ui-icon>
-</md-button>
