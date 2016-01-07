@@ -1,6 +1,6 @@
 /* global angular */
-angular.module('ui').directive('uiHighlight', ['$interpolate', 
-    function ($interpolate) {
+angular.module('ui').directive('uiHighlight', 
+    function () {
         return {
 			restrict: 'A',
 			link: function(scope, element, attrs) {
@@ -12,4 +12,4 @@ angular.module('ui').directive('uiHighlight', ['$interpolate',
                 });
 			}
 		}
-    }]);
+    });
