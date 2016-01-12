@@ -22,8 +22,8 @@
     </md-sidenav>
 
     <div flex layout="row" layout-wrap layout-align="center start">
-        <ui-group ng-repeat="group in main.selectedTab.items">
+        <ui-card-panel ng-repeat="group in main.selectedTab.items">
             <ui-component ng-repeat="control in group.items" item="control"></ui-component>
-        </ui-group>
+        </ui-card-panel>
     </div>
 </md-content>

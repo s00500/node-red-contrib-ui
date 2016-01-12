@@ -1,0 +1,14 @@
+ui-card-panel > p {
+    margin-bottom: 0;
+    margin-left: 5px
+}
+
+.card-container {
+    border: 1px dashed green;
+    position: relative;
+}
+        
+.card-container > * {
+    margin: 0 !important;
+    position: absolute;
+}

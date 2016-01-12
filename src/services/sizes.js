@@ -5,4 +5,5 @@ angular.module('ui').value('uiSizes', {
     gy: 5,
     px: 5,
     py: 5,
+    columns: 6
 });
