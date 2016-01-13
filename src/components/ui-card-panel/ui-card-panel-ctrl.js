@@ -26,7 +26,7 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
             rows = [];
             root.children().each(function () {
                 var child = $(this);
-                var size = child.attr('ui-card-size');
+                var size = child.attr('ui-card-size') || child.find('[ui-card-size]:first').attr('ui-card-size');
                 var result = extract.exec(size);
                 var width = Math.max(1, Math.min(sizes.columns, result ? parseInt(result[1]) || 1 : 1));
                 var height = Math.max(1, result ? parseInt(result[2]) || 1 : 1);
