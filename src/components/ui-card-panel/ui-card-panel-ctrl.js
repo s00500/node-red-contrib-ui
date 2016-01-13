@@ -4,6 +4,8 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
     function(sizes, $timeout) {
         var ctrl = this;
         ctrl.width = sizes.columns * sizes.sx + sizes.px * 2 + (sizes.columns - 1) * sizes.gx;
+        var defaultWidth = sizes.columns;
+        var defaultHeight = 1;
        
         var root;       
         ctrl.init = function (rootElement) {
@@ -28,8 +30,8 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
                 var child = $(this);
                 var size = child.attr('ui-card-size') || child.find('[ui-card-size]:first').attr('ui-card-size');
                 var result = extract.exec(size);
-                var width = Math.max(1, Math.min(sizes.columns, result ? parseInt(result[1]) || 1 : 1));
-                var height = Math.max(1, result ? parseInt(result[2]) || 1 : 1);
+                var width = Math.max(1, Math.min(sizes.columns, result ? parseInt(result[1]) || defaultWidth : defaultWidth));
+                var height = Math.max(1, result ? parseInt(result[2]) || defaultHeight : defaultHeight);
                 var position = getNextPosition(width, height);
                 child.css({
                     left: position.left, 
