@@ -1,4 +1,4 @@
-angular.module('ui').directive('uiCompile', ['$compile', '$rootScope', 'UiEvents',
+angular.module('ui').directive('uiTemplate', ['$compile', '$rootScope', 'UiEvents',
     function ($compile, $rootScope, events) {
         function createInnerScope(id) {
             var innerScope = $rootScope.$new();
@@ -12,7 +12,7 @@ angular.module('ui').directive('uiCompile', ['$compile', '$rootScope', 'UiEvents
             var id = scope.$eval('me.item.id');
             var innerScope;
             
-            scope.$watch(attrs.uiCompile,
+            scope.$watch(attrs.uiTemplate,
                 function(value) {
                     if (innerScope) innerScope.$destroy();
                     innerScope = createInnerScope(id);
