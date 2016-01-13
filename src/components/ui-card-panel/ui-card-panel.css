@@ -1,10 +1,10 @@
-ui-card-panel > p {
+.card-panel > p {
     margin-bottom: 0;
     margin-left: 5px
 }
 
 .card-container {
-    border: 1px dashed green;
+    /*border: 1px dashed green;*/
     position: relative;
 }
         

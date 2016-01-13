@@ -2,16 +2,16 @@
 /* global $ */
 angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout', 
     function(sizes, $timeout) {
-        this.width = sizes.columns * sizes.sx + sizes.px * 2 + (sizes.columns - 1) * sizes.gx;
-        this.height = 500;
-        
+        var ctrl = this;
+        ctrl.width = sizes.columns * sizes.sx + sizes.px * 2 + (sizes.columns - 1) * sizes.gx;
+       
         var root;       
-        this.init = function (rootElement) {
+        ctrl.init = function (rootElement) {
             root = rootElement;
         };
         
         var refreshInProgress = false;
-        this.refreshLayout = function() {
+        ctrl.refreshLayout = function() {
             if (refreshInProgress) return;
             refreshInProgress = true;
             $timeout(function() {
@@ -28,8 +28,8 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
                 var child = $(this);
                 var size = child.attr('ui:card-size') || child.attr('ui-card-size');
                 var result = extract.exec(size);
-                var width = parseInt(result[1]);
-                var height =  parseInt(result[2]);
+                var width = Math.max(1, Math.min(sizes.columns, parseInt(result[1]) || 1));
+                var height = Math.max(1, parseInt(result[2]) || 1);
                 var position = getNextPosition(width, height);
                 child.css({
                     left: position.left, 
@@ -38,6 +38,9 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
                     height: sizes.sx * height + sizes.gy * (height-1)
                 }); 
             });
+            ctrl.height = occupied.length ?
+                sizes.py * 2 + occupied.length * sizes.sy + (occupied.length - 1) * sizes.gy :
+                0;
         }
 
         function getNextPosition(width, height) {
@@ -49,7 +52,7 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
         }
         
         function getFreeAndOccupy(width, height) {
-            var maxx = sizes.columns-width;
+            var maxx = sizes.columns - width;
             for (var y=0;y<1000;y++)
                 for (var x=0;x<=maxx;x++) {
                     if (isFree(x, y, width, height)) {
