@@ -21,9 +21,9 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
         };
 
         var extract = /(\d+)x(\d+)/;
-        var occupied;
+        var rows;
         function refreshSizes() {
-            occupied = [];
+            rows = [];
             root.children().each(function () {
                 var child = $(this);
                 var size = child.attr('ui:card-size') || child.attr('ui-card-size');
@@ -39,8 +39,8 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
                 });
                 child.addClass('visible'); 
             });
-            ctrl.height = occupied.length ?
-                sizes.py * 2 + occupied.length * sizes.sy + (occupied.length - 1) * sizes.gy :
+            ctrl.height = rows.length ?
+                sizes.py * 2 + rows.length * sizes.sy + (rows.length - 1) * sizes.gy :
                 0;
         }
 
@@ -65,20 +65,20 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
         
         function occupy(x, y, width, height) {
             for (var dy=0; dy<height; dy++) {
-                var existing = occupied[y+dy];
-                if (!existing) occupied[y+dy] = existing = new Array(sizes.columns);
+                var row = rows[y+dy];
+                if (!row) rows[y+dy] = row = new Array(sizes.columns);
                 for (var dx=0; dx<width; dx++)
-                    existing[x+dx] = true;
+                    row[x+dx] = true;
             }
         }
         
         function isFree(x, y, width, height) {
             for (var dy=0;dy<height; dy++) {
-                var existing = occupied[y+dy];
-                if (!existing) continue;
+                var row = rows[y+dy];
+                if (!row) break;
                 for (var dx=0;dx<width;dx++)
-                if (existing[x+dx])
-                    return false;
+                    if (row[x+dx])
+                        return false;
             }
             
             return true;
