@@ -11,4 +11,9 @@
 .card-container > * {
     margin: 0 !important;
     position: absolute;
+    opacity: 0;
+}
+
+.card-container > .visible {
+    opacity: 1;
 }

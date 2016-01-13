@@ -36,7 +36,8 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
                     top: position.top,
                     width: sizes.sx * width + sizes.gx * (width-1),
                     height: sizes.sx * height + sizes.gy * (height-1)
-                }); 
+                });
+                child.addClass('visible'); 
             });
             ctrl.height = occupied.length ?
                 sizes.py * 2 + occupied.length * sizes.sy + (occupied.length - 1) * sizes.gy :
