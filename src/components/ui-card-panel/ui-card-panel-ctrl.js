@@ -13,12 +13,13 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
         };
         
         var refreshInProgress = false;
-        ctrl.refreshLayout = function() {
+        ctrl.refreshLayout = function(done) {
             if (refreshInProgress) return;
             refreshInProgress = true;
             $timeout(function() {
                 refreshSizes();
                 refreshInProgress = false;
+                if (done) done();
             }, 0);
         };
 
@@ -28,7 +29,7 @@ angular.module('ui').controller('uiCardPanelController', ['uiSizes', '$timeout',
             rows = [];
             root.children().each(function () {
                 var child = $(this);
-                var size = child.attr('ui-card-size') || child.find('[ui-card-size]:first').attr('ui-card-size');
+                var size = child.find('[ui-card-size]:first').attr('ui-card-size') || child.attr('ui-card-size');
                 var result = extract.exec(size);
                 var width = Math.max(1, Math.min(sizes.columns, result ? parseInt(result[1]) || defaultWidth : defaultWidth));
                 var height = Math.max(1, result ? parseInt(result[2]) || defaultHeight : defaultHeight);
