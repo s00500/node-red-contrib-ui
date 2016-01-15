@@ -3,10 +3,12 @@ angular.module('ui').directive('uiCardSize', ['uiSizes',
     function(sizes) {
         return {
 			restrict: 'A',
-            require: '^uiCardPanel',
-			link: function(scope, element, attrs, controller) {
+            require: ['^uiCardPanel', '^?uiMasonry'],
+			link: function(scope, element, attrs, ctrls) {
                 attrs.$observe('uiCardSize', function () {
-                    controller.refreshLayout();
+                    ctrls[0].refreshLayout(function() {
+                        if (ctrls[1]) ctrls[1].refreshLayout();
+                    });
                 });
 			}
 		}

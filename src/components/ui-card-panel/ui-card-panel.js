@@ -1,5 +1,4 @@
 /* global angular */
-/* global $ */
 angular.module('ui').directive('uiCardPanel', [
     function() {
         return {
