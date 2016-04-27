@@ -1,5 +1,11 @@
 # node-red-contrib-ui
 
+Todo: 
+add auth
+add color options
+
+
+
 ## Install
 
 ```
